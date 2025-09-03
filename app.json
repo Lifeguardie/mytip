@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "MyTip",
+    "slug": "mytip",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android"],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "bundleIdentifier": "com.mytip.restaurant",
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.mytip.restaurant"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fa4bfbf7-22a8-4d1a-90ae-eb11e6d77b55"
+      }
+    }
+  }
+}
