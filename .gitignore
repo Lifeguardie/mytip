@@ -1,0 +1,23 @@
+# === Server (Node.js) ===
+server/node_modules/
+server/.env
+server/*.log
+
+# === App (React Native / Expo) ===
+app/node_modules/
+app/.expo/
+app/.expo-shared/
+app/.env
+app/dist/
+app/build/
+app/ios/
+app/android/
+
+# === General ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.bak
+*.old

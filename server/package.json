@@ -1,0 +1,18 @@
+{
+  "name": "mytip-server",
+  "version": "1.0.0",
+  "description": "MyTip Restaurant Management Server",
+  "main": "server-app.js",
+  "scripts": {
+    "start": "node server-app.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.6.0",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "MyTip Team",
+  "license": "MIT"
+}
