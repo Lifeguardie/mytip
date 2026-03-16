@@ -508,15 +508,7 @@ const MenuScreen = ({ navigation, route }) => {
             icon: '🔄',
             color: ['#795548', '#5D4037'],
             onPress: () => Alert.alert('בקרוב', 'תכונה זו תהיה זמינה בקרוב')
-          },
-          ...(userPermissions?.report_management ? [{
-            id: 'end-of-day',
-            title: '🌅 דוח סוף יום',
-            description: 'דוח סיכום יומי של הטיפים והמעטפות',
-            icon: '📋',
-            color: ['#795548', '#5D4037'],
-            onPress: () => navigation.navigate('EndOfDay', { user })
-          }] : [])
+          }
         ];
       }
     }
@@ -578,15 +570,7 @@ const MenuScreen = ({ navigation, route }) => {
         icon: '⚡',
         color: ['#9C27B0', '#7B1FA2'],
         onPress: () => Alert.alert('החלפת משמרת', 'תכונה זו תהיה זמינה בקרוב')
-      },
-      ...(userPermissions?.report_management ? [{
-        id: 'end-of-day',
-        title: '🌅 דוח סוף יום',
-        description: 'דוח סיכום יומי של הטיפים והמעטפות',
-        icon: '📋',
-        color: ['#795548', '#5D4037'],
-        onPress: () => navigation.navigate('EndOfDay', { user })
-      }] : [])
+      }
     ];
   };
 
