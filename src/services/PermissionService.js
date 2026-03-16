@@ -56,8 +56,8 @@ const PermissionService = {
         // טעינת ברירות מחדל
         let permissions = this.getDefaultPermissionsByRole(user.jobrole);
         
-        // טעינת הרשאות מותאמות אישית מהשרת עבור מנהלים, או שמירת ברירות מחדל עבור אחרים
-        if (user.jobrole === 'manager' || user.jobrole === 'both') {
+        // טעינת הרשאות מותאמות אישית מהשרת עבור כל המשתמשים (מנהלים, מלצרים ומלצר-מנהל)
+        if (user.jobrole === 'manager' || user.jobrole === 'both' || user.jobrole === 'waiter') {
           try {
             console.log('🔒 Permissions: Loading custom permissions from server for manager:', userId);
             const managerPermissions = await ApiService.getManagerPermissions(userId);
