@@ -1617,9 +1617,9 @@ const server = http.createServer(async (req, res) => {
           }
         }
         
-        // משיכת כל העובדים (חוץ מבעלים שמקבלים הכל אוטומטית)
+        // משיכת מנהלים
         const [managers] = await conn.execute(
-          `SELECT id, username, wname, realname, job FROM ${tables.mycru} WHERE job != "owner" AND working = "yes"`
+          `SELECT id, username, wname, realname, job FROM ${tables.mycru} WHERE (job = "manager" OR job = "both") AND working = "yes"`
         );
         
         let addedCount = 0;
@@ -1725,15 +1725,15 @@ const server = http.createServer(async (req, res) => {
           const conn = await mysql.createConnection(dbConfig);
           await conn.execute("SET NAMES utf8mb4");
           
-          const [employeeCheck] = await conn.execute(
-            `SELECT id FROM ${tables.mycru} WHERE id = ?`,
+          const [managerCheck] = await conn.execute(
+            `SELECT id FROM ${tables.mycru} WHERE id = ? AND (job = "manager" OR job = "both")`,
             [managerId]
           );
-
-          if (employeeCheck.length === 0) {
+          
+          if (managerCheck.length === 0) {
             await conn.end();
             res.writeHead(404);
-            res.end(JSON.stringify({ success: false, message: 'Employee not found' }));
+            res.end(JSON.stringify({ success: false, message: 'Manager not found' }));
             return;
           }
           

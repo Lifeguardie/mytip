@@ -37,13 +37,13 @@ const PermissionManagementScreen = ({ navigation, route }) => {
       
       if (result && result.success && Array.isArray(result.employees)) {
         console.log('👥 Employees loaded:', result.employees.length);
-        // כל העובדים חוץ מבעלים (בעלים מקבלים הכל אוטומטית)
+        // רק מנהלים ומלצר-מנהלים (לא בעלים ולא מלצרים רגילים)
         const managementEmployees = result.employees.filter(emp => {
-          const isNotOwner = emp.job !== 'owner';
-          console.log(`Employee ${emp.wname}: job=${emp.job}, included=${isNotOwner}`);
-          return isNotOwner;
+          const isManager = emp.job === 'manager' || emp.job === 'both';
+          console.log(`Employee ${emp.wname}: job=${emp.job}, isManager=${isManager}`);
+          return isManager;
         });
-        console.log('👥 Employees found for permissions:', managementEmployees.length);
+        console.log('👨‍💼 Management employees found:', managementEmployees.length);
         setEmployees(managementEmployees);
       } else {
         console.error('Invalid employees response:', result);
@@ -232,14 +232,6 @@ const PermissionManagementScreen = ({ navigation, route }) => {
                   מנהל+מלצר
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.filterButton, roleFilter === 'waiter' && styles.filterActive]}
-                onPress={() => setRoleFilter('waiter')}
-              >
-                <Text style={[styles.filterText, roleFilter === 'waiter' && styles.filterTextActive]}>
-                  מלצרים
-                </Text>
-              </TouchableOpacity>
             </View>
 
             {/* Employee List */}
@@ -255,7 +247,7 @@ const PermissionManagementScreen = ({ navigation, route }) => {
                 >
                   <Text style={styles.employeeName}>{employee.realname || employee.wname}</Text>
                   <Text style={styles.employeeRole}>
-                    {employee.job === 'manager' ? 'מנהל' : employee.job === 'both' ? 'מנהל+מלצר' : 'מלצר'}
+                    {employee.jobrole === 'manager' ? 'מנהל' : 'מנהל+מלצר'}
                   </Text>
                 </TouchableOpacity>
               ))}
